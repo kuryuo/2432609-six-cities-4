@@ -52,7 +52,4 @@ export class UserEntity extends defaultClasses.TimeStamps {
   }
 }
 
-console.log('>>> name type:', Reflect.getMetadata('design:type', UserEntity.prototype, 'name'));
-console.log('>>> email type:', Reflect.getMetadata('design:type', UserEntity.prototype, 'email'));
-
 export const UserModel = getModelForClass(UserEntity);

@@ -39,9 +39,6 @@ export class ImportCommand implements Command {
     dbname: string,
     salt: string
   ): Promise<void> {
-    console.log('Starting import with params:', {
-      filename, login, host, dbname, salt
-    });
 
     const uri = getMongoURI(login, password, host, DEFAULT_DB_PORT, dbname);
     this.salt = salt;

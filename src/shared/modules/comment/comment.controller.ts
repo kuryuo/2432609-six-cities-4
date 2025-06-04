@@ -42,7 +42,6 @@ export default class CommentController extends BaseController {
     { body, tokenPayload }: CreateCommentRequest,
     res: Response
   ): Promise<void> {
-    // существует ли оффер
     if (!await this.offerService.exists(body.offerId)) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
@@ -52,8 +51,6 @@ export default class CommentController extends BaseController {
     }
 
     const comment = await this.commentService.create({ ...body, userId: tokenPayload.id });
-
-    // счетчик комментариев у оффера
     await this.offerService.incCommentCount(body.offerId);
 
     this.created(res, fillDTO(CommentRdo, comment));
